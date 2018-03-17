@@ -1,6 +1,6 @@
 ﻿namespace Lecture2
 {
-    partial class Form1
+    partial class PersonalForm
     {
         /// <summary>
         /// Required designer variable.
@@ -242,7 +242,7 @@
             this.label5.TabIndex = 23;
             this.label5.Text = "Date of birth";
             // 
-            // Form1
+            // PersonalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -269,7 +269,7 @@
             this.Controls.Add(this.lblSurname);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
-            this.Name = "Form1";
+            this.Name = "PersonalForm";
             this.Text = "Some personal form";
             ((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).EndInit();
             this.ResumeLayout(false);

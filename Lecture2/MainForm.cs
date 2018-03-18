@@ -86,27 +86,12 @@ namespace Lecture2
         {
             if (IsEditButton(e))
             {
-                PersonalForm personalForm = new PersonalForm();
                 var id = dataGridView1.Rows[e.RowIndex].Cells["ContactId"].Value as Guid?;
-                if (id.HasValue)
-                {
-                    var result = await GetFromDb(id.Value);
-                    personalForm.Bind(result);
-                    personalForm.ShowDialog();
-                }
+                await Edit(id);
             }
         }
 
-        private async Task<ContactInfo> GetFromDb(Guid? id)
-        {
 
-            return await Task.Run(() =>
-            {
-                var entity = _contactInfos.FirstOrDefault(c => id.HasValue && c.Id == id.Value);
-                Thread.Sleep(3000);
-                return entity;
-            });
-        }
 
         private bool IsEditButton(DataGridViewCellEventArgs e)
         {
@@ -146,6 +131,46 @@ namespace Lecture2
         {
             var result = await DownloadData();
             dataGridView1.DataSource = result.ToList();
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentCell.RowIndex >= 0)
+            {
+                btnEdit.Enabled = true;
+            }
+            else
+            {
+                btnEdit.Enabled = false;
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async Task<bool> Edit(Guid? id)
+        {
+            var data = GetFromDb(id);
+            PersonalForm personalForm = new PersonalForm();
+            if (id.HasValue)
+            {
+                personalForm.Bind(await data);
+                return personalForm.ShowDialog()==DialogResult.OK;
+            }
+
+            return false;
+        }
+
+        private async Task<ContactInfo> GetFromDb(Guid? id)
+        {
+            return await Task.Run(() =>
+            {
+                var entity = _contactInfos.FirstOrDefault(c => id.HasValue && c.Id == id.Value);
+                Thread.Sleep(3000);
+                return entity;
+            });
         }
     }
 }

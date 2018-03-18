@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace ContactsApp.Domain.ValueObjects
 {
@@ -33,6 +34,37 @@ namespace ContactsApp.Domain.ValueObjects
             _additionalLastsName = additionalLastName;
             _useDashForTwoLastNames = false;
 
+        }
+
+        private string Format()
+        {
+            StringBuilder builder=new StringBuilder();
+            builder.Append(LastName);
+            if (UseDashBetweenNames)
+            {
+                builder.Append("-");
+            }
+            else
+            {
+                builder.Append(" ");
+            }
+
+            if (AdditionalLastNames != null)
+            {
+                foreach (var additionalLastName in AdditionalLastNames)
+                {
+                    if (!builder.ToString().EndsWith(" ")) builder.Append(" ");
+                    builder.Append(additionalLastName);
+                }
+            }
+
+            return builder.ToString();
+
+        }
+
+        public override string ToString()
+        {
+            return Format();
         }
 
         protected override IEnumerable<object> GetEqualityComponents()

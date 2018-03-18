@@ -11,6 +11,8 @@ namespace Lecture2.Models
             Id = contactInfo.Id;
             Name = contactInfo.Name;
             PhoneNumber = contactInfo?.PrimaryPhoneNumber?.ToString();
+            FirstName = contactInfo.PersonalData?.FirstNames?.ToString();
+            LastName = contactInfo.PersonalData?.LastNames?.ToString();
 
         }
 
@@ -19,6 +21,8 @@ namespace Lecture2.Models
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
 
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
     }
 }

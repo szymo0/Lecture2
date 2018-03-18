@@ -8,13 +8,13 @@ namespace Lecture2.Models
         public ContactInfoModel(ContactInfo contactInfo)
         {
             if (contactInfo == null) throw new ArgumentNullException(nameof(contactInfo));
-            _id = contactInfo.Id;
+            Id = contactInfo.Id;
             Name = contactInfo.Name;
             PhoneNumber = contactInfo?.PrimaryPhoneNumber?.ToString();
 
         }
 
-        private Guid? _id;
+        public Guid? Id { get; }
 
         public string Name { get; set; }
         public string PhoneNumber { get; set; }

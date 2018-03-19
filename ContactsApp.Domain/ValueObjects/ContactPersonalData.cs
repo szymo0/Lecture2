@@ -59,15 +59,15 @@ namespace ContactsApp.Domain.ValueObjects
 
         public override string ToString()
         {
-            return $"{FirstNames} {LastNames} : {Sex.GetDescription()} born at {FormatDateOfBrith()} related with me as: {ParseRelationShip()} ";
+            return $"{FirstNames} {LastNames} : {Sex.GetDescription()} born at {FormatDateOfBrith()} related with me as: {FormatRelationship()} ";
         }
 
-        private string ParseRelationShip()
+        public string FormatRelationship()
         {
             StringBuilder stringBuilder=new StringBuilder();
             foreach (var flag in Enum.GetValues(RelationType.GetType()).Cast<RelationType>())
             {
-                if (RelationType.HasFlag(flag))
+                if (flag!=RelationType.None && RelationType.HasFlag(flag))
                 {
                     if (stringBuilder.Length > 0)
                         stringBuilder.Append(" and ");

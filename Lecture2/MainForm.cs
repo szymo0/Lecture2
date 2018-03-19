@@ -28,7 +28,7 @@ namespace Lecture2
             //AddColumnsProgramical();
 
             //dataGridView1.DataSource = _contactInfos.Select(c => new ContactInfoModel(c)).ToList();
-
+            dataGridView1.AutoGenerateColumns = false;
             //This don;t work too :(
             //AddColumnsProgramical();
 
@@ -79,6 +79,7 @@ namespace Lecture2
                     ReadOnly = true,
                 }
             );
+
             dataGridView1.CellContentClick += DataGridView1_CellContentClick;
         }
 
@@ -119,7 +120,7 @@ namespace Lecture2
             var result = Task.Run(
                 () =>
                 {
-                    Thread.Sleep(3000);
+                    Thread.Sleep(1000);
                     return _contactInfos.Select(c => new ContactInfoModel(c)).AsEnumerable();
                 });
 
@@ -145,19 +146,21 @@ namespace Lecture2
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
-
+            var row = dataGridView1.CurrentRow.DataBoundItem as ContactInfoModel;
+            if (row != null)
+                await Edit(row.Id);
         }
 
         private async Task<bool> Edit(Guid? id)
         {
             var data = GetFromDb(id);
-            PersonalForm personalForm = new PersonalForm();
+            ContactPreview personalForm = new ContactPreview();
             if (id.HasValue)
             {
-                personalForm.Bind(await data);
-                return personalForm.ShowDialog()==DialogResult.OK;
+                await personalForm.Bind(new ContactInfoModel( await data));
+                return personalForm.ShowDialog() == DialogResult.OK;
             }
 
             return false;
@@ -168,7 +171,7 @@ namespace Lecture2
             return await Task.Run(() =>
             {
                 var entity = _contactInfos.FirstOrDefault(c => id.HasValue && c.Id == id.Value);
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
                 return entity;
             });
         }

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using ContactsApp.Domain.Commands;
 using ContactsApp.Domain.Events;
 using ContactsApp.Domain.Repositories;
+using Lecture2.Editors;
 using Lecture2.Infrastucture;
 using Lecture2.Models;
 
@@ -110,9 +111,31 @@ namespace Lecture2
                     new PhotoChanging(_bindingContext.Id.Value
                         , File.ReadAllBytes(uploadPhoto.FileName)
                         , uploadPhoto.FileName));
-                var model = new ContactInfoModel(_contactInfoRepository.GetById(_bindingContext.Id.Value));
-                await ClearBinding();
-                await Bind(model);
+                await RefreshBinding();
+            }
+        }
+
+        private async Task RefreshBinding()
+        {
+            var model = new ContactInfoModel(_contactInfoRepository.GetById(_bindingContext.Id.Value));
+            await ClearBinding();
+            await Bind(model);
+        }
+
+        private async void btnEditPersonalData_Click(object sender, EventArgs e)
+        {
+            if(!_bindingContext.Id.HasValue)
+                return;
+            using (PersonalDataEditor editor = new PersonalDataEditor())
+            {
+                var aggreage= _contactInfoRepository.GetById(_bindingContext.Id.Value);
+                var model = new PersonalDataEditorModel(aggreage);
+                await editor.Bind(model);
+                if (editor.ShowDialog() == DialogResult.OK)
+                {
+                    await Dispatchers.RiseCommand(new PersonalDataChanging(aggreage.Id, model.CreateValueObject()));
+                    await RefreshBinding();
+                }
             }
         }
     }

@@ -97,7 +97,7 @@ namespace ContactsApp.Domain
             Photo = photo;
         }
 
-        private void SetPersonalData(ContactPersonalData personalData)
+        public void SetPersonalData(ContactPersonalData personalData)
         {
             PersonalData = personalData;
         }

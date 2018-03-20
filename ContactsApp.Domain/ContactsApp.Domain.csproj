@@ -45,6 +45,7 @@
     <Compile Include="Aggregates\Exceptions\BuilderAlreadyCreateObject.cs" />
     <Compile Include="Aggregates\Exceptions\EmailAlreadyAddedAsPrimary.cs" />
     <Compile Include="Aggregates\Exceptions\PhoneAlreadyAdded.cs" />
+    <Compile Include="Commands\PersonalDataChanging.cs" />
     <Compile Include="DomainResurces.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -52,6 +53,8 @@
     </Compile>
     <Compile Include="Commands\IDomainCommand.cs" />
     <Compile Include="Commands\IDomainCommandHandler.cs" />
+    <Compile Include="Events\ConsoleLogger.cs" />
+    <Compile Include="Events\PersonalDataChanged.cs" />
     <Compile Include="Events\PhotoChanged.cs" />
     <Compile Include="Commands\PhotoChanging.cs" />
     <Compile Include="Events\IDomainEvent.cs" />

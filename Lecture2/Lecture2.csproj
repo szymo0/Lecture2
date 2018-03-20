@@ -61,6 +61,12 @@
     <Compile Include="ContactPreview.Designer.cs">
       <DependentUpon>ContactPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\PersonalDataEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\PersonalDataEditor.Designer.cs">
+      <DependentUpon>PersonalDataEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Infrastucture\AutofacContainer.cs" />
     <Compile Include="Infrastucture\AutofacModule.cs" />
     <Compile Include="Infrastucture\Dispatchers.cs" />
@@ -72,6 +78,8 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ContactInfoModel.cs" />
+    <Compile Include="Models\Execeptions\NoRequiredDataProvidedForPersonalData.cs" />
+    <Compile Include="Models\PersonalDataEditorModel.cs" />
     <Compile Include="PersonalForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +90,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ContactPreview.resx">
       <DependentUpon>ContactPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\PersonalDataEditor.resx">
+      <DependentUpon>PersonalDataEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -120,5 +131,6 @@
       <Name>ContactsApp.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

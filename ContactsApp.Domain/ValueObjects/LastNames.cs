@@ -7,7 +7,7 @@ namespace ContactsApp.Domain.ValueObjects
 {
     public class LastNames : ValueObject<LastNames>
     {
-        private string LastName { get; }
+        public string LastName { get; }
         private string[] _additionalLastsName;
         private bool _useDashForTwoLastNames;
 

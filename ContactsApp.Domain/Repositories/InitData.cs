@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ContactsApp.Domain;
 using ContactsApp.Domain.ValueObjects;
 
-namespace Lecture2
+namespace ContactsApp.Domain.Repositories
 {
     public static class InitData
     {
@@ -54,7 +53,6 @@ namespace Lecture2
                     new DateTime(1985, 1, 1), Sex.Unknown, RelationType.Collegue));
             return builder.Build();
         }
-
         private static ContactInfo CreateAnnaKowalska()
         {
             ContactInfo.Builder builder = new ContactInfo

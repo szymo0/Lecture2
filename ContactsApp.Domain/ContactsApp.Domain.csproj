@@ -50,7 +50,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DomainResurces.resx</DependentUpon>
     </Compile>
+    <Compile Include="Events\IDomainCommand.cs" />
+    <Compile Include="Events\IDomainCommandHandler.cs" />
+    <Compile Include="Events\PhotoChanged.cs" />
+    <Compile Include="Events\PhotoChanging.cs" />
+    <Compile Include="Events\IDomainEvent.cs" />
+    <Compile Include="Events\IDomainEventHandler.cs" />
+    <Compile Include="Events\IEventDomainDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ContactInfoRepository.cs" />
+    <Compile Include="Repositories\InitData.cs" />
     <Compile Include="Shared\BytesHelper.cs" />
     <Compile Include="Shared\Consts.cs" />
     <Compile Include="Shared\EnumHelper.cs" />

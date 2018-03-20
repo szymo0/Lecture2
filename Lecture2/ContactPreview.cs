@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ContactsApp.Domain.Events;
+using ContactsApp.Domain.Repositories;
 using Lecture2.Infrastucture;
 using Lecture2.Models;
 
@@ -15,6 +12,7 @@ namespace Lecture2
     public partial class ContactPreview : Form, IBindable<ContactInfoModel>
     {
         private ContactInfoModel _bindingContext;
+        private IContactInfoRepository _contactInfoRepository=new ContactInfoRepository();
         public ContactPreview()
         {
             InitializeComponent();
@@ -58,6 +56,21 @@ namespace Lecture2
             }
 
             return Task.FromResult(true);
+        }
+
+        private async void btnUploadPhoto_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog uploadPhoto=new OpenFileDialog();
+            uploadPhoto.CheckFileExists = true;
+            uploadPhoto.Filter= "Image Files (JPG,PNG,GIF)|*.JPG;*.PNG;*.GIF";
+            if (uploadPhoto.ShowDialog() == DialogResult.OK)
+            {
+                await Dispatchers.RiseCommand(
+                    new PhotoChanging(_bindingContext.Id.Value
+                        , File.ReadAllBytes(uploadPhoto.FileName)
+                        , uploadPhoto.FileName));
+                await Bind(new ContactInfoModel(_contactInfoRepository.GetById(_bindingContext.Id.Value)));
+            }
         }
     }
 }

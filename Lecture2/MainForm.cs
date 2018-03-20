@@ -1,29 +1,23 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ContactsApp.Domain;
+using ContactsApp.Domain.Repositories;
 using Lecture2.Models;
 
 namespace Lecture2
 {
     public partial class MainForm : Form
     {
-        private List<ContactInfo> _contactInfos = new List<ContactInfo>();
+        private readonly IContactInfoRepository _contactInfoRepository=new ContactInfoRepository();
 
         public MainForm()
         {
             InitializeComponent();
-#if DEBUG
-            InitContactInfo();
-#endif
+
             //This don't work properly:( 
             //AddColumnsProgramical();
 
@@ -104,11 +98,6 @@ namespace Lecture2
             return false;
         }
 
-        private void InitContactInfo()
-        {
-            _contactInfos = InitData.GetDebugData().ToList();
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             //This work properly:)
@@ -121,7 +110,7 @@ namespace Lecture2
                 () =>
                 {
                     Thread.Sleep(1000);
-                    return _contactInfos.Select(c => new ContactInfoModel(c)).AsEnumerable();
+                    return _contactInfoRepository.GetAll().Select(c => new ContactInfoModel(c)).AsEnumerable();
                 });
 
             return await result;
@@ -170,7 +159,9 @@ namespace Lecture2
         {
             return await Task.Run(() =>
             {
-                var entity = _contactInfos.FirstOrDefault(c => id.HasValue && c.Id == id.Value);
+                if (!id.HasValue)
+                    return null;
+                var entity = _contactInfoRepository.GetById(id.Value);
                 Thread.Sleep(1000);
                 return entity;
             });

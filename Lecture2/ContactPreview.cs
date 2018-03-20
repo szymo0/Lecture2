@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ContactsApp.Domain.Commands;
 using ContactsApp.Domain.Events;
 using ContactsApp.Domain.Repositories;
 using Lecture2.Infrastucture;
@@ -16,6 +17,7 @@ namespace Lecture2
         public ContactPreview()
         {
             InitializeComponent();
+            MaximizeBox = false;
         }
 
         public Task<bool> Bind(ContactInfoModel bindContext)
@@ -29,6 +31,8 @@ namespace Lecture2
             lblSurnames.DataBindings.Add("Text", _bindingContext, "LastName");
             lblSex.DataBindings.Add("Text", _bindingContext, "SexDisplay");
             lblRelation.DataBindings.Add("Text", _bindingContext, "RelationshipDisplay");
+            pictureBox1.Image = _bindingContext.Picture;
+            pictureBox1.Refresh();
 
             if (_bindingContext.AlterantePhonse!=null)
             {
@@ -58,6 +62,43 @@ namespace Lecture2
             return Task.FromResult(true);
         }
 
+        public Task ClearBinding()
+        {
+            foreach (Control control in Controls)
+            {
+                if (control.DataBindings.Count > 0)
+                {
+                    Binding toDeleateBinding=null;
+                    for (int i = 0; i < control.DataBindings.Count; i++)
+                    {
+                        if (control.DataBindings[i].DataSource == _bindingContext)
+                        {
+                            toDeleateBinding = control.DataBindings[i];
+                            break;
+                        }
+                    }
+                    if (toDeleateBinding != null)
+                    {
+                        control.DataBindings.Remove(toDeleateBinding);
+                    }
+                }
+            }
+
+            lblName.DataBindings.Clear();
+            lblPrimaryPhone.DataBindings.Clear();
+            lblAddress.DataBindings.Clear();
+            lblBirthDate.DataBindings.Clear();
+            lblFirstNames.DataBindings.Clear();
+            lblSurnames.DataBindings.Clear();
+            lblSex.DataBindings.Clear();
+            lblRelation.DataBindings.Clear();
+            flowLayoutPanel1.Controls.Clear();
+            panel1.Controls.Clear();
+            _bindingContext = null;
+            return Task.CompletedTask;
+
+        }
+
         private async void btnUploadPhoto_Click(object sender, EventArgs e)
         {
             OpenFileDialog uploadPhoto=new OpenFileDialog();
@@ -69,7 +110,9 @@ namespace Lecture2
                     new PhotoChanging(_bindingContext.Id.Value
                         , File.ReadAllBytes(uploadPhoto.FileName)
                         , uploadPhoto.FileName));
-                await Bind(new ContactInfoModel(_contactInfoRepository.GetById(_bindingContext.Id.Value)));
+                var model = new ContactInfoModel(_contactInfoRepository.GetById(_bindingContext.Id.Value));
+                await ClearBinding();
+                await Bind(model);
             }
         }
     }

@@ -50,10 +50,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DomainResurces.resx</DependentUpon>
     </Compile>
-    <Compile Include="Events\IDomainCommand.cs" />
-    <Compile Include="Events\IDomainCommandHandler.cs" />
+    <Compile Include="Commands\IDomainCommand.cs" />
+    <Compile Include="Commands\IDomainCommandHandler.cs" />
     <Compile Include="Events\PhotoChanged.cs" />
-    <Compile Include="Events\PhotoChanging.cs" />
+    <Compile Include="Commands\PhotoChanging.cs" />
     <Compile Include="Events\IDomainEvent.cs" />
     <Compile Include="Events\IDomainEventHandler.cs" />
     <Compile Include="Events\IEventDomainDispatcher.cs" />

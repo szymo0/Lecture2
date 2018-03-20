@@ -9,5 +9,6 @@ namespace Lecture2.Infrastucture
     public interface IBindable<TEntiy> where TEntiy: class
     {
         Task<bool> Bind(TEntiy bindContext);
+        Task ClearBinding();
     }
 }

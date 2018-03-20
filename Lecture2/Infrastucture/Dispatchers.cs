@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using ContactsApp.Domain.Commands;
 using ContactsApp.Domain.Events;
 
 namespace Lecture2.Infrastucture
@@ -12,33 +13,35 @@ namespace Lecture2.Infrastucture
     public class Dispatchers : IEventDomainDispatcher, ICommandDomainDispatcher
     {
         protected static IContainer Container = AutofacContainer.GetContainer();
-        public static Task Rise<TEvent>(TEvent @event)
+        public static void Rise<TEvent>(TEvent @event)
             where TEvent : IDomainEvent
         {
             var eventHandler = Container.Resolve<IEnumerable<IDomainEventHandler<TEvent>>>();
+            List<Task> tasks = new List<Task>();
             foreach (var domainEventHandler in eventHandler)
             {
-                domainEventHandler.Handle(@event);
+                tasks.Add(domainEventHandler.Handle(@event));
 
             }
-            return Task.CompletedTask;
+
+            Task.WaitAll(tasks.ToArray());
         }
 
-        public static Task RiseCommand<TCommand>(TCommand command)
+        public static async Task RiseCommand<TCommand>(TCommand command)
             where TCommand : IDomainCommand
         {
             var commandHandler = Container.Resolve<IDomainCommandHandler<TCommand>>();
-            commandHandler.Handle(command);
-            return Task.CompletedTask;
+            await commandHandler.Handle(command);
         }
+
         void IEventDomainDispatcher.Dispatch<TEvent>(TEvent eventToDispatch)
         {
             Rise(eventToDispatch);
         }
 
-        void ICommandDomainDispatcher.Dispatch<TCommand>(TCommand command)
+        async void ICommandDomainDispatcher.Dispatch<TCommand>(TCommand command)
         {
-            RiseCommand(command);
+            await RiseCommand(command);
         }
     }
 }

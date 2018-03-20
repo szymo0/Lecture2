@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace ContactsApp.Domain.Events
+namespace ContactsApp.Domain.Commands
 {
     public interface IDomainCommandHandler<in T>
         where T : IDomainCommand

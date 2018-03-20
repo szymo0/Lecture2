@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
+using ContactsApp.Domain.Events;
 using ContactsApp.Domain.Repositories;
 using ContactsApp.Domain.ValueObjects;
 
-namespace ContactsApp.Domain.Events
+namespace ContactsApp.Domain.Commands
 {
     public class PhotoChanging : IDomainCommand
     {
@@ -32,9 +34,11 @@ namespace ContactsApp.Domain.Events
         public async Task Handle(PhotoChanging command)
         {
             var obj = await Task.Run(() => Repository.GetById(command.Id));
-            obj.SetPhoto(new ContactPhoto(command.Raw, ContactPhoto.PhotoType.Unknown));
+            Path.GetExtension(command.FileName);
+            obj.SetPhoto(new ContactPhoto(command.Raw, ContactPhoto.TypeFromFileName(command.FileName)));
             await Task.Run(() => Repository.Update(obj));
-            EventDomainDispatcher.Dispatch(new PhotoChanged(obj.Id));
+            EventDomainDispatcher.Dispatch(new PhotoChanged(obj.Id,obj.Photo));
         }
+
     }
 }

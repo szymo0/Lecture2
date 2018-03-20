@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
+using ContactsApp.Domain.Commands;
 using ContactsApp.Domain.Events;
 using ContactsApp.Domain.Repositories;
 
@@ -13,11 +9,10 @@ namespace Lecture2.Infrastucture
     {
         protected override void Load(ContainerBuilder builder)
         {
-            base.Load(builder);
-            builder.RegisterAssemblyTypes(ThisAssembly, typeof(ContactInfoRepository).Assembly)
-                .AsClosedTypesOf(typeof(IDomainCommandHandler<>)).AsImplementedInterfaces()
-                .AsClosedTypesOf(typeof(IDomainEventHandler<>)).AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(typeof(ContactInfoRepository).Assembly).AsClosedTypesOf(typeof(IDomainCommandHandler<>)).AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(typeof(ContactInfoRepository).Assembly).AsClosedTypesOf(typeof(IDomainEventHandler<>)).AsImplementedInterfaces();
             builder.RegisterType<ContactInfoRepository>().AsImplementedInterfaces();
+            builder.RegisterType<Dispatchers>().AsImplementedInterfaces();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Lecture2.Infrastucture;
 
 namespace Lecture2
 {
@@ -14,6 +15,7 @@ namespace Lecture2
         [STAThread]
         static void Main()
         {
+            var container=AutofacContainer.GetContainer();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

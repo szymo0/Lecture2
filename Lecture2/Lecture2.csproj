@@ -61,6 +61,26 @@
     <Compile Include="ContactPreview.Designer.cs">
       <DependentUpon>ContactPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CustomControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ExtendedContol.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ExtendedControl2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\PointConverter.cs" />
+    <Compile Include="Controls\UIEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Models\AddressModel.cs" />
+    <Compile Include="Controls\CompositControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CompositControl.Designer.cs">
+      <DependentUpon>CompositControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\PersonalDataEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +110,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ContactPreview.resx">
       <DependentUpon>ContactPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CompositControl.resx">
+      <DependentUpon>CompositControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\PersonalDataEditor.resx">
       <DependentUpon>PersonalDataEditor.cs</DependentUpon>

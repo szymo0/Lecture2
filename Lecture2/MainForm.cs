@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ContactsApp.Domain;
 using ContactsApp.Domain.Repositories;
+using Lecture2.Controls;
 using Lecture2.Models;
 
 namespace Lecture2
 {
     public partial class MainForm : Form
     {
-        private readonly IContactInfoRepository _contactInfoRepository=new ContactInfoRepository();
+        private readonly IContactInfoRepository _contactInfoRepository = new ContactInfoRepository();
 
         public MainForm()
         {
@@ -23,6 +26,18 @@ namespace Lecture2
 
             //dataGridView1.DataSource = _contactInfos.Select(c => new ContactInfoModel(c)).ToList();
             dataGridView1.AutoGenerateColumns = false;
+            var binary = File.ReadAllBytes(@"../../../resources/male.jpg");
+            using (MemoryStream memoryStream = new MemoryStream(binary))
+            {
+                var a= Bitmap.FromStream(memoryStream);
+                a = new Bitmap(a, customControl1.Width, customControl1.Height);
+                customControl1.BackColor = Color.Red;
+                customControl1.Picture = a;
+                customControl1.ImageCroppingType = CroppingType.Circle;
+                customControl1.UpdatePeriod = 100;
+                customControl1.PercentChange = 1;
+                customControl1.ImageCroppingMode = CroppingMode.Automatic;
+            }
             //This don;t work too :(
             //AddColumnsProgramical();
 
@@ -148,7 +163,7 @@ namespace Lecture2
             ContactPreview personalForm = new ContactPreview();
             if (id.HasValue)
             {
-                await personalForm.Bind(new ContactInfoModel( await data));
+                await personalForm.Bind(new ContactInfoModel(await data));
                 return personalForm.ShowDialog() == DialogResult.OK;
             }
 

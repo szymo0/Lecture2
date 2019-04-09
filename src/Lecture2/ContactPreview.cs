@@ -24,6 +24,7 @@ namespace Lecture2
         public Task<bool> Bind(ContactInfoModel bindContext)
         {
             _bindingContext = bindContext;
+            //lblName.Texts
             lblName.DataBindings.Add("Text", _bindingContext, "Name");
             lblPrimaryPhone.DataBindings.Add("Text", _bindingContext, "PhoneNumber");
             lblAddress.DataBindings.Add("Text", _bindingContext, "AddressDisplay");
@@ -32,6 +33,7 @@ namespace Lecture2
             lblSurnames.DataBindings.Add("Text", _bindingContext, "LastName");
             lblSex.DataBindings.Add("Text", _bindingContext, "SexDisplay");
             lblRelation.DataBindings.Add("Text", _bindingContext, "RelationshipDisplay");
+
             pictureBox1.Image = _bindingContext.Picture;
             pictureBox1.Refresh();
 

@@ -35,8 +35,8 @@ namespace Lecture2.Controls
         //protected override void OnPaint(PaintEventArgs e)
         //{
         //    base.OnPaint(e);
-        //    if(Text.Contains("Red"))
-        //        e.Graphics.DrawRectangle(new Pen(Brushes.Red),30,30,30,30);
+        //    if (Text.Contains("Red"))
+        //        e.Graphics.DrawRectangle(new Pen(Brushes.Red), 30, 30, 30, 30);
         //}
 
         protected override void WndProc(ref Message m)

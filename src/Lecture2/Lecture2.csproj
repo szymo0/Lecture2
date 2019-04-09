@@ -39,6 +39,7 @@
       <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -74,6 +75,12 @@
     <Compile Include="Controls\UIEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Controls\CompositControl.cs">
       <SubType>UserControl</SubType>
@@ -108,11 +115,19 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ContactPreview.resx">
       <DependentUpon>ContactPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CompositControl.resx">
       <DependentUpon>CompositControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\PersonalDataEditor.resx">
       <DependentUpon>PersonalDataEditor.cs</DependentUpon>
@@ -133,6 +148,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ContactsApp.Domain.ContactInfo.datasource" />
     <None Include="Properties\Settings.settings">

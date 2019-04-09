@@ -53,30 +53,30 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(650, 28);
+            this.dataGridView1.Size = new System.Drawing.Size(867, 163);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(445, 322);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAdd.Location = new System.Drawing.Point(593, 396);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(56, 19);
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(586, 322);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClose.Location = new System.Drawing.Point(781, 396);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(56, 19);
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -84,10 +84,10 @@
             // btnEdit
             // 
             this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(514, 322);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEdit.Location = new System.Drawing.Point(685, 396);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(56, 19);
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -96,38 +96,42 @@
             // customControl1
             // 
             this.customControl1.ImageCroppingMode = Lecture2.Controls.CroppingMode.Automatic;
-            this.customControl1.ImageCroppingType = Lecture2.Controls.CroppingType.Rectangle;
-            this.customControl1.Location = new System.Drawing.Point(343, 119);
+            this.customControl1.ImageCroppingType = Lecture2.Controls.CroppingType.Circle;
+            this.customControl1.Location = new System.Drawing.Point(457, 146);
+            this.customControl1.Margin = new System.Windows.Forms.Padding(4);
             this.customControl1.Name = "customControl1";
             this.customControl1.PercentChange = 0;
             this.customControl1.Picture = null;
-            this.customControl1.Size = new System.Drawing.Size(150, 141);
+            this.customControl1.Size = new System.Drawing.Size(200, 174);
             this.customControl1.TabIndex = 7;
             this.customControl1.Text = "customControl1";
             this.customControl1.UpdatePeriod = 5;
             // 
             // extendedControl21
             // 
-            this.extendedControl21.Location = new System.Drawing.Point(193, 152);
+            this.extendedControl21.Location = new System.Drawing.Point(257, 187);
+            this.extendedControl21.Margin = new System.Windows.Forms.Padding(4);
             this.extendedControl21.Name = "extendedControl21";
-            this.extendedControl21.Size = new System.Drawing.Size(100, 20);
+            this.extendedControl21.Size = new System.Drawing.Size(132, 22);
             this.extendedControl21.TabIndex = 6;
             this.extendedControl21.Text = "RedFace";
             // 
             // extendedContol1
             // 
-            this.extendedContol1.Location = new System.Drawing.Point(36, 152);
+            this.extendedContol1.Location = new System.Drawing.Point(48, 187);
+            this.extendedContol1.Margin = new System.Windows.Forms.Padding(4);
             this.extendedContol1.Name = "extendedContol1";
-            this.extendedContol1.Size = new System.Drawing.Size(100, 20);
+            this.extendedContol1.Size = new System.Drawing.Size(132, 22);
             this.extendedContol1.TabIndex = 5;
             // 
             // compositControl1
             // 
-            this.compositControl1.Location = new System.Drawing.Point(0, 33);
-            this.compositControl1.MaximumSize = new System.Drawing.Size(500, 95);
-            this.compositControl1.MinimumSize = new System.Drawing.Size(400, 90);
+            this.compositControl1.Location = new System.Drawing.Point(115, 246);
+            this.compositControl1.Margin = new System.Windows.Forms.Padding(5);
+            this.compositControl1.MaximumSize = new System.Drawing.Size(667, 117);
+            this.compositControl1.MinimumSize = new System.Drawing.Size(533, 111);
             this.compositControl1.Name = "compositControl1";
-            this.compositControl1.Size = new System.Drawing.Size(500, 95);
+            this.compositControl1.Size = new System.Drawing.Size(667, 117);
             this.compositControl1.TabIndex = 4;
             // 
             // contactInfoBindingSource
@@ -136,18 +140,19 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(116, 216);
+            this.button1.Location = new System.Drawing.Point(155, 266);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 8;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 350);
+            this.ClientSize = new System.Drawing.Size(868, 431);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.customControl1);
             this.Controls.Add(this.extendedControl21);
@@ -157,7 +162,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,13 +50,22 @@ namespace Lecture4
 
             var graphics = Graphics.FromImage(pictureBox1.Image);
 
-
-            //WriteIntroText(graphics, 10);
-            DrawStarWarsLogo(graphics, 10);
-            DrawEndText(graphics, 10);
+            DrawStars(graphics);
+            WriteIntroText(graphics, 60);
+            DrawStarWarsLogo(graphics, 100);
+            DrawEndText(graphics, 100);
 
 
             pictureBox1.Refresh();
+        }
+
+        private void DrawStars(Graphics graphics)
+        {
+            foreach (Star star in _stars)
+            {
+                //Debug.WriteLine(Color.FromArgb(star.GetTransparency(), Color.White).A);
+                graphics.FillEllipse(new SolidBrush(Color.FromArgb(star.GetTransparency(),Color.White)),(float)star.Location.X-star.Radius/2,(float)star.Location.Y-star.Radius/2,star.Radius,star.Radius );
+            }
         }
 
         private void DrawEndText(Graphics graphics, int i)
@@ -89,7 +99,7 @@ namespace Lecture4
             List<Star> stars = new List<Star>();
             for (int i = 0; i < starNumber; i++)
             {
-                stars.Add(Star.CreateRandomStart(this.ClientSize.Width, this.ClientSize.Height, 20, 4));
+                stars.Add(Star.CreateRandomStart(this.ClientSize.Width, this.ClientSize.Height, 40, 5));
             }
 
             _stars = stars;
@@ -101,6 +111,7 @@ namespace Lecture4
             using (var graphics = Graphics.FromImage(bitmap))
             {
                 graphics.Clear(Color.Black);
+                graphics.Transform.RotateAt(10, new PointF(1.0f, 2.0f));
                 graphics.Dispose();
             }
             Bitmap bmp = new Bitmap(ClientSize.Width, ClientSize.Height);
@@ -108,13 +119,13 @@ namespace Lecture4
             foreach (var star in _stars)
             {
                 Color color = Color.FromArgb(star.GetTransparency(), Color.White);
-                Debug.WriteLine(color.A);
+                //Debug.WriteLine(color.A);
                 bitmap.SetPixel(star.Location.X, star.Location.Y, color);
                 bitmap.SetPixel(star.Location.X + 1, star.Location.Y, color);
                 bitmap.SetPixel(star.Location.X, star.Location.Y - 1, color);
                 bitmap.SetPixel(star.Location.X - 1, star.Location.Y, color);
                 bitmap.SetPixel(star.Location.X, star.Location.Y - 1, color);
-                star.ChangeStarBrightness();
+                //star.ChangeStarBrightness();
             }
 
         }

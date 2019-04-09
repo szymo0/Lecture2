@@ -26,7 +26,7 @@ namespace Lecture2
 
             //dataGridView1.DataSource = _contactInfos.Select(c => new ContactInfoModel(c)).ToList();
             dataGridView1.AutoGenerateColumns = false;
-            var binary = File.ReadAllBytes(@"../../../resources/male.jpg");
+            var binary = File.ReadAllBytes(@"../../../../resources/male.jpg");
             using (MemoryStream memoryStream = new MemoryStream(binary))
             {
                 var a= Bitmap.FromStream(memoryStream);
